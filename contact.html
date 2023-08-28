@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hayden Gems</title>
+        <meta charset="en-US">
+        <meta name="description" content="this is a website that reveal the hidden restaurants in Downtown Toronto Area. By hidden areas and things, we mean those existed but lesser-known restaurants, things that are underrated at Downtown Toronto. this website promotes local explorations for newcomers to Toronto and discover the secret treasures for local communities, and therefore transform the thought of boring and busy city into a brand new fresh one.">
+        <meta name="Keywords" content="Hidden gems, underated, things to do, downtown, toronto, restaurant, new experience, ranking, top 10, Dine-in, must-try">
+        <meta name="Authors" content="Chioma Kamalu, Jercy Tiong, Ryan Ancheta">
+        <meta name="viewport" content="width=device-width, intial-scale-1">
+        <link rel="stylesheet" href="css/contact.css" type="text/css">
+        <link rel="icon" href="assets/favicon.ico" type="images/x-icon">
+        <script src="/js/index.js" defer></script>
+    </head>
+    <body>
+        <header>
+            <!--logo of our team and name of our team-->
+            <a href="index.html"><h1><img id="logo" src="assets/vibes-removebg-preview.png" alt="logo">Hayden Gems</h1></a>
+            <!--main navigation bar page-->
+            <button class="mobilenav" aria-controls="navbar" aria-expanded="false"></button>
+
+            <!--main navigation bar page-->
+            <nav>
+                <ul id="navbar" data-visible="off" class="navbar" >
+                    <a href="index.html"><li>Home</li></a>
+                    <a href="about.html"><li>About us</li></a>
+                    <a href="main.html"><li>Top 10 Spots</li></a>
+                    <a href="galleries.html"><li>Galleries</li></a>
+                    <a href="contact.html"  class="active"><li>Contact Us!</li></a>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            
+            <main>
+                <form action = "contactus.html">
+                    <fieldset class="personal_info">
+                        <legend>Contact US</legend>
+                        <label for = "first">First Name:</label>
+                        <input type = "text" id = "first" name = "first" placeholder="First Name" autofocus required><br><br>
+                        <label for = "last">Last Name:</label>
+                        <input type = "text" id = "last" name = "last" placeholder = "Last Name" required><br><br>
+                        <label for = "email">Email:</label>
+                        <input type = "email" id = "email" placeholder = "example@gmail.com"><br><br>
+                        <label for = "phone">Phone Number:</label>
+                        <input type = "tel" id = "phone" pattern = "[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="999-999-9999"><br><br>
+                        <label for="identity">How do you identify yourself?</label>
+                        <select id="identity">
+                          <option value="option1">Tourist</option>
+                          <option value="option2">Business Owner</option>
+                          <option value="option3">Others</option>
+                        </select> <br><br>
+                        <label for="content">How may we help you?</label><br>
+                         <textarea id="content" maxlength="500" placeholder="Kindly Tell Us" required></textarea>
+                        <!-- Use for word count later in the JavaScript -->
+                        <span id="WordCount">0 words</span>
+                        <span id="content-error" class="error-message"></span><br><br>
+
+
+                    </fieldset>
+                    <centre> <input type="submit" value="Submit"></centre>
+                      
+                </form>
+            </main>
+
+
+            <script>
+                
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.querySelector("form");
+        const firstName = document.getElementById("first");
+        const lastName = document.getElementById("last");
+        const email = document.getElementById("email");
+        const phone = document.getElementById("phone");
+        const content = document.getElementById("content");
+        const wordCount = document.getElementById("WordCount");
+
+        form.addEventListener("submit", function (event) {
+            let valid = true;
+
+            // Reset error messages
+            const errorMessages = document.querySelectorAll(".error-message");
+            errorMessages.forEach((element) => {
+                element.textContent = "";
+            });
+
+            if (firstName.value.trim() === "") {
+                valid = false;
+                document.getElementById("first-error").textContent = "First name is required.";
+            }
+
+            if (lastName.value.trim() === "") {
+                valid = false;
+                document.getElementById("last-error").textContent = "Last name is required.";
+            }
+
+            if (email.value.trim() === "") {
+                valid = false;
+                document.getElementById("email-error").textContent = "Email is required.";
+            } else if (!/^\S+@\S+\.\S+$/.test(email.value)) {
+                valid = false;
+                document.getElementById("email-error").textContent = "Invalid email format.";
+            }
+
+            if (phone.value.trim() !== "" && !/^\d{3}-\d{3}-\d{4}$/.test(phone.value)) {
+                valid = false;
+                document.getElementById("phone-error").textContent = "Invalid phone number format (e.g., 999-999-9999).";
+            }
+
+            if (content.value.trim() === "") {
+                valid = false;
+                document.getElementById("content-error").textContent = "Please provide a description.";
+            } else if (content.value.trim().split(/\s+/).length > 500) {
+                valid = false;
+                document.getElementById("content-error").textContent = "Word limit exceeded.";
+            }
+
+            if (!valid) {
+                event.preventDefault();
+            }
+        });
+
+        content.addEventListener("input", function () {
+            const words = content.value.trim().split(/\s+/).filter(Boolean).length;
+            wordCount.textContent = words + " " + (words === 1 ? "word" : "words");
+        });
+    });
+</script>
+
+
+</body>
+<footer>
+    <!--footer copyrited for our team-->
+    <p>&copy;&nbsp;2023 Group HaydenGems</p>
+</footer>
+
+
+
+
+</html>
